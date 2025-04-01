@@ -4,31 +4,34 @@
   font-style: normal;
   font-weight: normal;
   src: local('Xilla Regular'), url('../fonts/Xilla\ Regular.woff') format('woff');
-  }
+}
   @font-face {
   font-family: 'Xilla Bold Italic';
   font-style: normal;
   font-weight: normal;
   src: local('Xilla Bold Italic'), url('../fonts/Xilla\ Bold\ Italic.woff') format('woff');
-  }
+}
   @font-face {
   font-family: 'Xilla Bold';
   font-style: normal;
   font-weight: normal;
   src: local('Xilla Bold'), url('../fonts/Xilla\ Bold.woff') format('woff');
-  }
+}
   @font-face {
   font-family: 'Xilla Italic';
   font-style: normal;
   font-weight: normal;
   src: local('Xilla Italic'), url('../fonts/Xilla\ Italic.woff') format('woff');
-  }
+}
 
 /* -------------------------------------------------------------------------- */
 /*                             Basic HTML Elements                            */
 /* -------------------------------------------------------------------------- */
 
 :root {
+  --background-color: #f4ece4e6;
+  --background-color-shadow: var(--background-color-shadow);
+
   --small-font: 12px;
   --nav-border-width: 2px;
 }
@@ -52,7 +55,7 @@ body {
   min-height: 100%;
   margin: 25px;
 
-  background-image: url(../background.png);
+  background-image: url(../img/background.png);
   background-position: 70% 100%;
   background-repeat: no-repeat;
 }
@@ -72,11 +75,7 @@ nav li {
   list-style: none;
 }
 
-nav li:before {
-  content: "⇒";
-}
-
-div {
+div, site-header {
   max-width: 800px;
 }
 
@@ -86,22 +85,20 @@ div {
 
 .main {
   display: flex;
-  flex-direction: row wrap;
+  flex-direction: column;
   
   width: 100%;
-  height: 78vh;
-  margin-bottom: 0;
-  padding: 5px;
+  max-height: 78vh;
 
-  border: 5px ridge #d79d5f;
-  background-color: #f4ece4e6;
+  outline: 2px solid #6a7025;
+  background-color: var(--background-color);
   border-bottom: none;
 
   /* To have stars go below */
   z-index: 1; 
 }
 
-.header {
+site-header {
   position: relative;
 
   height: 10vh;
@@ -117,7 +114,7 @@ div {
   background-color: transparent;
 }
 
-.header > h1 {
+site-header > h1 {
   position: absolute;
   
   padding-left: 15px;
@@ -128,19 +125,29 @@ div {
 
 nav {
   flex: 0 0 150px;
-  margin-bottom: 0;
-  padding: 5px;
+}
+
+nav > ul {
+  display: flex;
+  flex-direction: row;
 }
 
 nav > ul > li {
-  border: var(--nav-border-width) dotted;
+  background-image: linear-gradient(var(--background-color), #dfcebd);
+  border: 3px groove #d79d5f;
+  margin: 10px 1px 0px 1px;
+  /* outline: 2px solid #6a7025; */
+  padding: 5px;
+  text-align: center;
 }
 
 .content {
   flex-grow: 1;
-  width: 100%;
+
   margin-left: 5px;
   margin-bottom: 0;
+
+  padding: 5px;
 }
 
 .content > div {
@@ -155,60 +162,10 @@ br {
 
 .credits {
   margin: 0;
-  width: 100%;
+  padding: 5px;
   
-  background-color: #f4ece4e6;
-  border: 5px ridge #d79d5f;
-  border-top: none;
-
   text-align: center;
   font-size: var(--small-font);
-}
-
-/* -------------------------------------------------------------------------- */
-/*                               Doorway Styling                              */
-/* -------------------------------------------------------------------------- */
-
-.doorway * {
-  color:white;
-  z-index: 1;
-}
-
-.doorway img {
-  content: url(../door.png);
-
-  height: 600px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-} 
-
-.doorway img:hover {
-  content: url(../door-open.png);
-  
-  height: 670px;
-  margin-top: 0px;
-  padding-top: 20px;
-  padding-right: 120px;
-}
-
-.doorway p {
-  margin-top: 10vh;
-}
-
-/* Thanks for the solution to looking through the doorway
-@equinox https://stackoverflow.com/a/26508124 */
-.doorway div {
-  position: absolute;
-  height: 580px;
-  width: 230px;
-
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  
-  box-shadow: 0 0 0 10000px rgba(0, 0, 0, 1);
 }
 
 /* -------------------------------------------------------------------------- */
@@ -227,7 +184,7 @@ br {
   border-color: transparent;
 
   background-color: transparent;
-  background-image: url(../star.gif);
+  background-image: url(../img/star.gif);
   background-repeat: no-repeat;
   background-size: 100% 100%;
 
@@ -249,7 +206,6 @@ br {
   background-color: transparent;
   
   transform: translate(0px, -30px);
-  /* animation: spin 1s ease-in-out infinite; */
 }
 
 .star-tail > div:not(.star-tail) {

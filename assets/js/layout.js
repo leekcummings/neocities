@@ -1,7 +1,7 @@
 // Create side header and siderbar dynamically on all pages
 class SiteHeader extends HTMLElement {
     connectedCallback() {
-        this.innerHTML = `<h1>leekie_faucet</h1>`;
+        this.innerHTML = `<h1 id="title">leekie_faucet</h1>`;
     }
 }
 
